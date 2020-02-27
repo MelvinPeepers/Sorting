@@ -29,6 +29,7 @@ def selection_sort(arr):
 
 # TO-DO:  implement the Bubble Sort function below
 
+# a swap function which gets called at the end of the bubble_sort
 def swap(arr, index_1, index_2):
     temp = arr[index_1]
     arr[index_1] = arr[index_2]
@@ -37,6 +38,7 @@ def swap(arr, index_1, index_2):
 
 def bubble_sort(arr):
     # for each pair(elem1, elem2):
+    # loop through each element in arr
     for i in arr:
         # loop that iterates up until the last element of the list
         for index in range(len(arr) - 1):
