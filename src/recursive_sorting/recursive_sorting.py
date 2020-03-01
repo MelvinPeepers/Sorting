@@ -1,18 +1,20 @@
 # TO-DO: complete the helpe function below to merge 2 sorted arrays
 def merge(arrA, arrB):
-    # create new array of size [len(arrA) + len(arrB)] for merged elements not implementing in place
-    elements = len(arrA) + len(arrB)
-    # create a new array to hold elements
-    merged_arr = [0] * elements
+    elements = []  # a new empty list. add members of left and right to result unit it contains a sorted list with elements of both
     # TO-DO
-    # for all elements:
-    # if ALL ELEMENTS IN arrA HAVE BEEN MERGED, put next element in arrB into merged array
-    # elif ALL ELEMENTS in arrB have been merged, put next element in arrA into merged array
-    # elif next ELEMENT IN arrA SMALLER, add to merged array
-    # else next element in arrB smaller, add to merged array
-
-    # return merged array
-    return merged_arr
+    while (arrA and arrB):  # create a loop that will continue iterating while both arrA and arrB have elements
+        if arrA[0] < arrB[0]:  # check if first element of left is smaller then the first element of right
+            elements.append(arrA[0])  # append arrA[0] to our elements list
+            arrA.pop(0)  # remove the first element from the left list
+        else:
+            elements.append(arrB[0])
+            arrB.pop(0)
+    if arrA:
+        elements += arrA  # check if there are any elements still in arrA. If there are, add them to the end of the elements
+    if arrB:
+        elements += arrB  # check if there are any elements still in arrB. If there are, add them to the end of the elements
+        # return merged array
+    return elements
 
 
 # TO-DO: implement the Merge Sort function below USING RECURSION
@@ -21,8 +23,8 @@ def merge_sort(arr):
     # if the length of the array is greater then 1
     if len(arr) > 1:
         # we need to "divide" it some more  left hand side of the array, right hand side of the array call the merge sort function
-        left = merge_sort(arr[0: len(arr) / 2])
-        right = merge_sort(arr[len(arr) / 2:])
+        left = merge_sort(arr[0: len(arr) // 2])
+        right = merge_sort(arr[len(arr) // 2:])
         # "conquer" We need to merge the pieces back together (above merge())
         arr = merge(left, right)
 
